@@ -7,5 +7,9 @@ examples/*.o
 bindings/python3/build/
 bindings/python3/ftvp.cpp
 bindings/python3/ftvp.so
+bindings/python3/pyftvp.egg-info/
+bindings/python3/pyftvp/__pycache__/
+bindings/python3/pyftvp/_ftvp*
 
 src/libftvp.so
+build

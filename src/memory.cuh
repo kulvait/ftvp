@@ -16,16 +16,15 @@
  * - dev_glo: dual gap per square/cube odd
  *
  */
-struct memory_cuda {
-  double *dev_xie;
-  double *dev_xio;
-  double *dev_u;
-  double *dev_xiobar;
-  double *dev_xioswp;
-  double *dev_gle;
-  double *dev_glo;
+struct memory_cuda
+{
+    double* dev_xie;
+    double* dev_xio;
+    double* dev_u;
+    double* dev_xiobar;
+    double* dev_gle;
+    double* dev_glo;
 };
-
 
 /**
  * This is used to return informations about the optimization, such as
@@ -36,11 +35,12 @@ struct memory_cuda {
  * - gap: final dual gap.
  *
  */
-struct res_cuda {
-  int it;
-  double msec;
-  double gap;
-  double rmse;
+struct res_cuda
+{
+    int it;
+    double msec;
+    double gap;
+    double rmse;
 };
 
 /**
@@ -63,7 +63,8 @@ extern void init_cuda();
  * @param u Initial image on CPU.
  *
  */
-extern void init_memory(struct memory_cuda *mem, struct res_cuda *res, int sx, int sy, int sz, double* u);
+extern void
+init_memory(struct memory_cuda* mem, struct res_cuda* res, int sx, int sy, int sz, double* u);
 
 /**
  * Destroy FTVP auxiliary variables on the GPU.
@@ -73,6 +74,6 @@ extern void init_memory(struct memory_cuda *mem, struct res_cuda *res, int sx, i
  * @param mem Auxiliary variables.
  *
  */
-extern void free_memory(struct memory_cuda *mem);
+extern void free_memory(struct memory_cuda* mem);
 
 #endif

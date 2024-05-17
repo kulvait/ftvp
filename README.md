@@ -1,6 +1,16 @@
 Fast Total Variation Proximal
 =============================
 
+Reasons to fork
+---------------
+Relative to 4b993f commit:
+
+* FIX dealing with `dev\_xioswp` variable. It does not have to be allocated by cudaMalloc since it is just a pointer to swap buffers.
+* There might be some other issues dealing non-square arrays
+
+
+
+
 ** EXPERIMENTAL CODE: may or may not work on your computer **
 
 `ftvp` is a CUDA library dedicated to the computation of the proximal operator

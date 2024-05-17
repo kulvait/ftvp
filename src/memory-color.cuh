@@ -11,7 +11,6 @@
  * - dev_xio: dual variable on odd square/cube
  * - dev_u: current primal solution
  * - dev_xiobar: over-relaxed dual variable (odd square)
- * - dev_xioswp: temporary variable for swapping over-relaxation
  * - dev_gle: dual gap per square/cube even
  * - dev_glo: dual gap per square/cube odd
  *
@@ -21,7 +20,6 @@ struct memory_cuda {
   double *dev_xio;
   double *dev_u;
   double *dev_xiobar;
-  double *dev_xioswp;
   double *dev_gle;
   double *dev_glo;
 };
