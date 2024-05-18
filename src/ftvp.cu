@@ -157,22 +157,22 @@ extern res_cuda* prox_tv(int sx,
                          OptimizationMethod opt_meth,
                          int upd_strat)
 {
-    struct res_cuda* res = (struct res_cuda*)malloc(sizeof(struct res_cuda));
-    struct memory_cuda* mem = (struct memory_cuda*)malloc(sizeof(struct memory_cuda));
+    struct res_cuda* res = new res_cuda();
+    struct memory_cuda mem;
     int use_newton = opt_meth == OE_SPLIT_NEWTON ? 1 : 0;
 
-    init_memory(mem, res, sx, sy, sz, u);
+    init_memory(&mem, res, sx, sy, sz, u);
     if(sz > 1)
     {
         exit(1);
     } else
     {
-        prox_tv_2d_noalloc(mem, res, sx, sy, lambda, epsilon, Nit, block_size, steps, gapiter,
+        prox_tv_2d_noalloc(&mem, res, sx, sy, lambda, epsilon, Nit, block_size, steps, gapiter,
                            gap_factor, use_newton, upd_strat);
     }
 
     // Memory management
-    gpuErrchk(cudaMemcpy(u, mem->dev_u, sx * sy * sz * sizeof(double), cudaMemcpyDeviceToHost));
-    free_memory(mem);
+    gpuErrchk(cudaMemcpy(u, mem.dev_u, sx * sy * sz * sizeof(double), cudaMemcpyDeviceToHost));
+    free_memory(&mem);
     return res;
 }
