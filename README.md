@@ -1,17 +1,25 @@
-Fast Total Variation Proximal
-=============================
+Fork of [Fast Total Variation Proximal](https://github.com/svaiter/ftvp)
+========================================================================
 
-Reasons to fork
+Reasons to fork 
 ---------------
+
+It was not working for my application out of the box, so I am trying to fix memory management and possibly even the computation of proximal operator for nonsquare arrays.
+
+**Changelog**
+
 Relative to 4b993f commit:
 
 * FIX dealing with `dev\_xioswp` variable. It does not have to be allocated by cudaMalloc since it is just a pointer to swap buffers.
-* There might be some other issues dealing non-square arrays
+* FIX cpu memory management of `init\_memory` function. CPU arrays were prealocated, copied to GPU buffers and not freed. This was slow and might cause crash of the program as it would eventually lead to the memory overflow.
+* IMPROVEMENT instead of memset and copying to GPU buffer now the cudaMemset is used to zero CUDA buffers
 
 
+TODO:
+* Code seems not to deal with square non-square arrays COLUMNS\>ROWS well as the square pattern of the ROWxROW image is inpaited to the rectangle image and repeated
+* Might be issue with Python binding or library itself
+* Will investigate this
 
-
-** EXPERIMENTAL CODE: may or may not work on your computer **
 
 `ftvp` is a CUDA library dedicated to the computation of the proximal operator
 of the isotropic Total Variation in 2D and 3D on Nvidia GPU. This repository
@@ -22,6 +30,9 @@ under the New BSD licence, see LICENSE file.
 
 Status
 ------
+
+** EXPERIMENTAL CODE: may or may not work on your computer **
+
 `ftvp` is currently under active development, and the API is susceptible to
 change at any time. At the moment, the following features are available:
 
