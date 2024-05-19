@@ -27,15 +27,14 @@ TODO
 * that would be consistent with standard definition of proximal operator but need to look into the source code
 * FIX numpy and Python bindings for 3D images 
 
+
+Status
+------
 `ftvp` is a CUDA library dedicated to the computation of the proximal operator
 of the isotropic Total Variation in 2D and 3D on Nvidia GPU. This repository
 includes examples of use in C, along with bindings for Python. It is licensed
 under the New BSD licence, see LICENSE file.
 
-* Issues: [GitHub Issues](https://github.com/svaiter/ftvp/issues)
-
-Status
-------
 
 ** EXPERIMENTAL CODE: may or may not work on your computer **
 
