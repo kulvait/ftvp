@@ -24,7 +24,7 @@ Relative to 4b993f commit:
 
 TODO
 * in ftvp.cuh there is minimization formula `u = argmin_x lambda/2 ||x - u||_2^2 + TV(x)` but it seems it actualy is `u = argmin_x ||x - u||_2^2 + lambda/2 TV(x)` as larger lambda causes stronger regularization
-* need to look into the source code
+* that would be consistent with standard definition of proximal operator but need to look into the source code
 * FIX numpy and Python bindings for 3D images 
 
 `ftvp` is a CUDA library dedicated to the computation of the proximal operator
