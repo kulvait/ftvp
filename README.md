@@ -10,16 +10,22 @@ It was not working for my application out of the box, so I am trying to fix mem
 
 Relative to 4b993f commit:
 
-* FIX dealing with `dev\_xioswp` variable. It does not have to be allocated by cudaMalloc since it is just a pointer to swap buffers.
-* FIX cpu memory management of `init\_memory` function. CPU arrays were prealocated, copied to GPU buffers and not freed. This was slow and might cause crash of the program as it would eventually lead to the memory overflow.
+* FIX dealing with `dev_xioswp` variable. It does not have to be allocated by cudaMalloc since it is just a pointer to swap buffers.
+* FIX cpu memory management of `init_memory` function. CPU arrays were prealocated, copied to GPU buffers and not freed. This was slow and might cause crash of the program as it would eventually lead to the memory overflow.
 * IMPROVEMENT instead of memset and copying to GPU buffer now the cudaMemset is used to zero CUDA buffers
+* IMPROVEMENT out of source compilation in the main github directory
+    * `mkdir build`
+    * `cmake ..`
+    * `make`
+    * `make install`
+    * by default it adds libraries to ${HOME}/lib
+    * `export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${HOME}/lib`
+* FIX There was a alignment problem between C arrays and numpy arrays as numpy arrays are indexed u[ycorrd, xcoord] but the sizes of axes sx and sy were swapped
 
-
-TODO:
-* Code seems not to deal with square non-square arrays COLUMNS\>ROWS well as the square pattern of the ROWxROW image is inpaited to the rectangle image and repeated
-* Might be issue with Python binding or library itself
-* Will investigate this
-
+TODO
+* in ftvp.cuh there is minimization formula `u = argmin_x lambda/2 ||x - u||_2^2 + TV(x)` but it seems it actualy is `u = argmin_x ||x - u||_2^2 + lambda/2 TV(x)` as larger lambda causes stronger regularization
+* need to look into the source code
+* FIX numpy and Python bindings for 3D images 
 
 `ftvp` is a CUDA library dedicated to the computation of the proximal operator
 of the isotropic Total Variation in 2D and 3D on Nvidia GPU. This repository

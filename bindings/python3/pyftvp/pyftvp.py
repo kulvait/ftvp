@@ -14,7 +14,8 @@ def prox_tv(u, la, epsilon = 0.0, iters=5000, block_size=16, steps=3, gapiter=1,
         ures = u
     if color:
         ures = np.swapaxes(ures,0,2)
-    ures = ures.astype(np.double).copy(order='C')
+#see https://stackoverflow.com/questions/29947639/cheapest-way-to-get-a-numpy-array-into-c-contiguous-order 
+    ures = np.ascontiguousarray(ures.astype(np.double))
     if rmse_factor is not None:
         gap_factor_new = rmse_factor * rmse_factor
     else:
