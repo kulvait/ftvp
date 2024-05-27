@@ -4,7 +4,7 @@ Fork of [Fast Total Variation Proximal](https://github.com/svaiter/ftvp)
 Reasons to fork 
 ---------------
 
-It was not working for my application out of the box, so I am trying to fix memory management and possibly even the computation of proximal operator for nonsquare arrays.
+The 4b993f commit has issues with memory management and Python implementation, which I try to fix.
 
 **Changelog**
 
@@ -23,9 +23,8 @@ Relative to 4b993f commit:
 * FIX There was a alignment problem between C arrays and numpy arrays as numpy arrays are indexed u[ycorrd, xcoord] but the sizes of axes sx and sy were swapped
 
 TODO
-* in ftvp.cuh there is minimization formula `u = argmin_x lambda/2 ||x - u||_2^2 + TV(x)` but it seems it actualy is `u = argmin_x ||x - u||_2^2 + lambda/2 TV(x)` as larger lambda causes stronger regularization
-* that would be consistent with standard definition of proximal operator but need to look into the source code
 * FIX numpy and Python bindings for 3D images 
+* in ftvp.cuh there is minimization formula `u = argmin_x lambda/2 ||x - u||_2^2 + TV(x)` consistent with [3.6](https://doi.org/10.1017/S096249291600009X) but seemingly larger lambda causes stronger regularization,
 
 
 Status
